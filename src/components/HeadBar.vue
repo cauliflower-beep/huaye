@@ -1,15 +1,33 @@
 <template>
   <header class="header">
-    <span class="logo" @click="goIndex"></span>
-    <!--    搜索框-->
-    <div class="search-wrapper">
-      <input class="search-input" type="text" placeholder="Search">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
-        <defs></defs>
-        <circle cx="11" cy="11" r="8"></circle>
-        <path d="M21 21l-4.35-4.35"></path>
-      </svg>
+
+    <div class="app-header-left">
+      <!--    logo-->
+      <span class="logo" @click="goIndex"></span>
+
+      <!--    搜索框-->
+      <div class="search-wrapper">
+        <input class="search-input" type="text" placeholder="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
+          <defs></defs>
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="M21 21l-4.35-4.35"></path>
+        </svg>
+      </div>
     </div>
+
+    <div class="app-header-right">
+      <!--      主题切换-->
+<!--      <button class="mode-switch" title="Switch Theme">-->
+<!--        <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">-->
+<!--          <defs></defs>-->
+<!--          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>-->
+<!--        </svg>-->
+<!--      </button>-->
+
+
+    </div>
+
 
     <!--    按钮-->
     <div class="btns">
@@ -67,12 +85,42 @@ export default {
   width: 100%;
   height: 48px;
   position: fixed;
-  background: #ffffff;
+  background: #f3f6fd;
   display: flex;
   display: -webkit-flex;
   align-items: center;
   top: 0;
   z-index: 1;
+
+  --search-area-bg: #ffffff;
+
+  .app-header-left, .app-header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .app-header-left {
+    flex-grow: 1;
+  }
+
+  .app-header-right button {
+    margin-left: 10px;
+  }
+
+  .mode-switch {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mode-switch.active .moon {
+    fill: var(--main-color);
+  }
+
   .logo {
     margin-left: 10px;
     height: 32px;
@@ -84,6 +132,14 @@ export default {
     flex-grow: 0;
     margin-right: 16px;
     cursor: pointer;
+  }
+
+  .app-name {
+    color: var(--main-color);
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    margin: 0 32px;
   }
 
   .search-wrapper {
@@ -127,15 +183,18 @@ export default {
     display: -webkit-flex;
     align-items: center;
     .login-btn {
+      background-color: #ffffff;
+      flex-shrink: 0;
+      font-weight: 700;
+
       border: 1px solid transparent;
-      border-radius: 4px;
+      border-radius: 13px;
+      overflow: hidden;
       box-sizing: border-box;
       text-align: right;
       letter-spacing: 1px;
       text-decoration: none;
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
       line-height: 24px;
       text-transform: uppercase;
       padding: 3px 16px;

@@ -1,22 +1,25 @@
 <template>
   <div class="content">
+
     <div class="left">
       <!-- <h4 class="c-l-title">热门帖子</h4> -->
       <div class="c-l-header">
+
         <div class="new btn-iconfont"
         :class="{ active: timeOrder }"
-        @click="selectOrder('time')"
-        >
+        @click="selectOrder('time')">
           <i class="iconfont icon-polygonred"></i>最新
         </div>
+
         <div class="top btn-iconfont"
          :class="{ active: scoreOrder }"
-         @click="selectOrder('score')"
-        >
+         @click="selectOrder('score')">
           <i class="iconfont icon-top"></i>最热
         </div>
+
         <button class="btn-publish" @click="goPublish">发表</button>
       </div>
+
       <ul class="c-l-list">
         <li class="c-l-item"  v-for="post in postList" :key="post.id">
           <div class="post">
@@ -87,6 +90,7 @@ export default {
       postList: []
     };
   },
+
   methods: {
     selectOrder(order){
       this.order = order;
@@ -158,6 +162,7 @@ export default {
 .content {
   max-width: 100%;
   box-sizing: border-box;
+  background-color: #f3f6fd;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -176,7 +181,7 @@ export default {
     }
     .c-l-header {
       align-items: center;
-      background-color: #ffffff;
+      background-color: #f3f6fd;
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
