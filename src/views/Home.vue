@@ -2,7 +2,6 @@
   <div class="content">
 
     <div class="left">
-      <!-- <h4 class="c-l-title">热门帖子</h4> -->
       <div class="c-l-header">
 
         <div class="new btn-iconfont"

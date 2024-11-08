@@ -2,21 +2,17 @@
   <div class="main">
     <div class="container">
       <h2 class="form-title">注册</h2>
+
       <div class="form-group">
-        <label for="name">用户名</label>
+<!--        普通文本框-->
         <input type="text" class="form-control" name="name" id="name" placeholder="用户名" v-model="username"/>
-      </div>
-      <div class="form-group">
-        <label for="pass">密码</label>
+        <hr>
         <input type="password" class="form-control" name="pass" id="pass" placeholder="密码" v-model="password"/>
-      </div>
-      <div class="form-group">
-        <label for="re_pass">确认密码</label>
+        <hr>
         <input type="password" class="form-control" name="re_pass" id="re_pass" placeholder="确认密码"  v-model="confirm_password"/>
       </div>
 
       <div class="form-btn">
-<!--        <button type="button" class="btn btn-info" @click="submit">提交</button>-->
         <button type="button"
                 :class="['btn', isFormValid ? 'btn-info' : 'btn-dark']"
                 @click="submit"
@@ -24,99 +20,123 @@
           提交
         </button>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
-export default {
-	name: "SignUp",
-	data() {
-		return {
-			username: "",
-			password: "",
-			confirm_password: "",
-			submitted: false
-		};
-	},
-	computed: {
-    isFormValid() {
-      return this.username && this.password && this.confirm_password && this.password === this.confirm_password;
-    }
-	},
-	created() {
+  export default {
+    name: "SignUp",
+    data() {
+      return {
+        username: "",
+        password: "",
+        confirm_password: "",
+        submitted: false
+      };
+    },
+    computed: {
+      isFormValid() {
+        return this.username && this.password && this.confirm_password && this.password === this.confirm_password;
+      }
+    },
+    created() {},
 
-	},
-	methods: {
-		submit() {
-			this.$axios({
-				method: 'post',
-				url:'/signup',
-				data: JSON.stringify({
-					username: this.username,
-					password: this.password,
-					confirm_password: this.confirm_password
-				})
-			}).then((res)=>{
-				console.log(res.data);
-				if (res.code == 1000) {
-          console.log('signup success');
-          this.$router.push({ name: "Login" });
-				}else{
-          console.log(res.msg);
-        }
-			}).catch((error)=>{
-				console.log(error)
-			})
-		}
-	}
-};
+    methods: {
+      submit() {
+        this.$axios({
+          method: 'post',
+          url:'/signup',
+          data: JSON.stringify({
+            username: this.username,
+            password: this.password,
+            confirm_password: this.confirm_password
+          })
+        }).then((res)=>{
+          console.log(res.data);
+          if (res.code === 200) {
+            console.log('signup success');
+            this.$router.push({ name: "Login" });
+          }else{
+            console.log(res.msg);
+          }
+        }).catch((error)=>{
+          console.log(error)
+        })
+      }
+    }
+  };
 </script>
 
 <style lang="less" scoped>
 .main {
-  background: #f8f8f8;
-  padding: 150px 0;
+  background: #f3f6fd;
+  padding: 200px 0;
   .container {
-    width: 600px;
-    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    width: 20%;
+    z-index: 5;
+    -webkit-transition: all .3s ease;
+    //border: 1px solid #ccc;
+    border-radius: 20px;
+    height: 500px;
+    //background: #61caef;
+    background-image: url("../assets/images/signUpBg.jpg");
+    background-position: center;
+    background-size: cover;
     margin: 0 auto;
     max-width: 1200px;
-    padding: 20px;
+    padding: 50px;
+
+    //卡片标题
     .form-title {
-      margin-bottom: 33px;
+      color: #fff;
+      margin-bottom: 70px;
       text-align: center;
     }
+
+    //分割线
+    hr {
+      border-top: 1px solid #ccc; /* 调整横线的样式 */
+      margin: 10px 0; /* 调整横线的上下间距 */
+    }
+
+    //输入框
     .form-group {
-      margin: 15px;
-      label {
-        display: inline-block;
-        max-width: 100%;
-        margin-bottom: 5px;
-        font-weight: 700;
-      }
+      border-radius: 20px;
+      background-color: #fff;
+      overflow: hidden;
+      opacity: 1;
+      visibility: visible;
+      -webkit-transition: all .3s ease;
+      margin: 50px;
       .form-control {
+        border: none;
         display: block;
         width: 100%;
-        height: 34px;
-        padding: 6px 12px;
-        font-size: 14px;
+        height: 40px;
+        padding: 10px 30px;
+        font-size: 12px;
         line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
       }
     }
+
     .form-btn {
       display: flex;
       justify-content: center;
       .btn {
-        padding: 6px 20px;
-        font-size: 18px;
+        position: relative; /* 使按钮成为定位容器 */
+        background-color: rgba(255, 255, 255, 0.3); /* 设置按钮背景为半透明黑色 */
+
+        padding: 8px 30%;
+        font-size: 15px;
+        color: #ffffff;
         line-height: 1.3333333;
-        border-radius: 6px;
+        border-radius: 12px;
         display: inline-block;
         margin-bottom: 0;
         font-weight: 400;
@@ -127,16 +147,6 @@ export default {
         touch-action: manipulation;
         cursor: pointer;
         border: 1px solid transparent;
-      }
-      .btn-info {
-        color: #fff;
-        background-color: #06f813;
-        border-color: #07e70a;
-      }
-      .btn-dark {
-        color: #fff;
-        background-color: #f10606;
-        border-color: #e10606;
       }
     }
   }
