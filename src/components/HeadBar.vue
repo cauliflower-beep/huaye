@@ -81,6 +81,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .header {
+  margin-top: 20px;
   width: 100%;
   height: 48px;
   position: fixed;
@@ -181,6 +182,8 @@ export default {
     display: flex;
     display: -webkit-flex;
     align-items: center;
+
+    //登录按钮
     .login-btn {
       background-color: #ffffff;
       flex-shrink: 0;
@@ -209,6 +212,8 @@ export default {
         margin-right: 10px;
       }
     }
+
+    //个人头像
     .user {
       width: auto;
       height: 24px;
