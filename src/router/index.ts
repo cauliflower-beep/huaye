@@ -1,11 +1,19 @@
+// 现在的后端更喜欢hash模式
 import { createRouter, createWebHistory } from "vue-router";
 
 // 导入相应页面
 import Home from "@/views/Home.vue";
 import Archive from "@/views/Archive.vue";
+import ArticleDetail from "@/views/ArticleDetail.vue";
 
 const routes = [
   // 首页
+  // 配置上名字之后，路由就可以有两种跳转形式：
+  // 1.字符串跳转： to="/"
+  // 2.对象跳转。对象跳转又分为两种形式：
+  // 2.1 name跳转： :to="{name:'home'}"
+  // 2.2 path跳转： :to="{path:'/'}"
+  // 当存在多级路由或者路由参数的时候，还是对向形式使用的更方便一些
   {
     path: "/",
     name: "home",
@@ -15,6 +23,11 @@ const routes = [
     path: "/archive",
     name: "archive",
     component: Archive,
+  },
+  {
+    path: "/article",
+    name:"article",
+    component: ArticleDetail,
   }
 ];
 

@@ -22,11 +22,22 @@ import {RouterView} from "vue-router";
   .app{
     display: flex;
     height: 100%;
+    margin: 0;
   }
 
   .side-bar{
-    width: 17%;
+    /* 固定左侧导航栏的宽度*/
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
     height: 100%;
     border: aqua;
+  }
+
+  .main-container{
+    padding: 20px;
+    flex-grow: 1; /* 尽可能的扩展以填满可用空间*/
+    //border: 1px solid #61caef;
+    height: 100%;
   }
 </style>
