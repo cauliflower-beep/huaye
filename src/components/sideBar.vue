@@ -9,14 +9,10 @@
     <nav class="menu">
       <ul class="list">
         <!-- 循环展示导航列表-->
-        <!--:class="{ 'selected': selectedIdx === idx }"
-        是vue中一种动态绑定类的方式，可以根据条件来添加或者移除css类
-        -->
         <li v-for="(item, idx) in items" :key="idx">
           <router-link
             :to="item.href"
-            @click="selectItem(idx)"
-            :class="{ 'selected': selectedIdx === idx }"
+            active-class="selected"
           >
             {{ item.text }}
           </router-link>
@@ -31,29 +27,23 @@
 </template>
 
 <script setup lang="ts">
-  import {ref} from "vue";
   // import auth from '@/components/authMod.vue'
 
   // 响应式数据
-  const selectedIdx = ref(-1);
   const items = [
-    {href: '/latest', text: '最新文章'},
+    {href: '/', text: '最新文章'},
     {href: '/archive', text: '文章存档'},
   ];
-
-  const selectItem = (idx) => {
-    selectedIdx.value = idx
-  }
 
 </script>
 
 <style scoped>
   .sideBar {
     width: 160px; /* Fixed width */
+    height: 100%; /* Full height */
     position: fixed; /* Fixed position */
     top: 0; /* Align to top */
     left: 0; /* Align to left */
-    height: 100%; /* Full height */
     background-color: #2A2935; /* Background color */
     color: white; /* Text color */
     padding: 10px; /* Add some padding */
