@@ -1,11 +1,11 @@
 <template>
   <!--  左侧导航栏-->
-  <SideBar/>
+  <sideBar/>
 </template>
 
 
 <script lang="ts" setup>
-import SideBar from "@/components/SideBar.vue";
+import sideBar from "@/components/sideBar.vue";
 
 </script>
 

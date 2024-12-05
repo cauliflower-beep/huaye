@@ -5,6 +5,7 @@
       <button class="homeButton">BI技术团队</button>
     </div>
 
+    <!--导航菜单-->
     <nav class="menu">
       <ul class="list">
         <!-- 循环展示导航列表-->
@@ -22,11 +23,16 @@
         </li>
       </ul>
     </nav>
+
+    <div>
+<!--      <auth/>-->
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
   import {ref} from "vue";
+  // import auth from '@/components/authMod.vue'
 
   // 响应式数据
   const selectedIdx = ref(-1);
