@@ -39,7 +39,7 @@
 
 <style scoped>
   .sideBar {
-    width: 160px; /* Fixed width */
+    width: 200px; /* Fixed width */
     height: 100%; /* Full height */
     position: fixed; /* Fixed position */
     top: 0; /* Align to top */
@@ -108,7 +108,7 @@
     content: '';
     position: absolute;
     top: 0;
-    left: -80px; /* 向左移出10px，抵消父级padding */
+    left: -200px; /* 向左移出200px，抵消父级padding */
     right: -40%; /* 向右移出10px，抵消父级padding */
     bottom: 0;
     background-color: #26252F;

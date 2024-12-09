@@ -1,7 +1,7 @@
 <template>
   <div class="auth-buttons">
-    <button @click="handleRegisterClick">注册</button>
-    <button @click="handleLoginClick">登录</button>
+    <button class="auth-button" @click="handleRegisterClick">注册</button>
+    <button class="auth-button" @click="handleLoginClick">登录</button>
   </div>
 </template>
 
@@ -16,20 +16,18 @@
 </script>
 
 <style scoped>
-  .auth-buttons button {
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 25px;
-
+  .auth-buttons {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 10px;
+    gap:10px;
   }
 
-  .auth-buttons button {
+  .auth-button {
     padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 25px;
+    font-size: 14px;
+    border-radius: 20px;
+
+    background-color: #61caef;
+    color: white;
+    border: none;
   }
 </style>
