@@ -10,7 +10,16 @@
       <ul class="article-list">
         <li v-for="article in articles" :key="article.id" class="article">
           <!--文章标题-->
-          <router-link :to="{path: '/article'}" class="article_title">{{ article.title}}</router-link>
+          <router-link :to="{
+                              path: '/article',
+                              query:{
+                                title:article.title
+                              }
+                            }"
+                       class="article_title"
+          >
+            {{ article.title}}
+          </router-link>
 
           <!--时间及作者-->
           <div class="article-info">
@@ -26,7 +35,14 @@
           <!--文章摘要-->
           <div class="article-summary">
             {{ article.summary }}
-            <button class="read-all" @click="readAll">阅读全文</button>
+            <router-link :to="{
+                              path: '/article',
+                              query:{
+                                      title:article.title
+                                    }
+                              }"
+                         class="read-all"
+            >阅读全文</router-link>
           </div>
 
           <!--文章tag-->
@@ -59,7 +75,7 @@
 
 <script setup lang="ts">
   import {ref,onMounted} from "vue";
-  // import {RouterLink} from "vue-router";
+  import {RouterLink} from "vue-router";
 
   import foot from '@/components/footer.vue';
   import CalendarIcon from '@/components/icons/IconCalendar.vue';
@@ -152,11 +168,6 @@
   onMounted(()=>{
     // 发起文章数据请求
   });
-
-  // 阅读全文
-  const readAll = () => {
-    console.log('点击了“阅读全文”按钮');
-  };
 
   // 加载更多文章
   const queryTag = () => {
@@ -273,6 +284,8 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
+
+    text-decoration: none; /* 去除按钮下方下划线*/
   }
 
   .read-all:hover {
