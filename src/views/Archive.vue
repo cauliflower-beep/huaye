@@ -25,7 +25,7 @@
   import {ref} from "vue"
   import foot from '@/components/footer.vue';
   // vue3中通常使用axios发送网络请求
-  import axios from 'axios'
+  import apiCli from '@/api';
 
   // 从后台服务器获取到的年份列表
   const years = ref(['2024','2023','2022', '2021', '2020', '2019', '2018', '2017', '2016'])
@@ -42,10 +42,8 @@
     selectedYear.value = year
 
     try {
-      const rsp = await axios.get('http://localhost:8090/archives',{
-        params:{
-          year:year // 这将转化为查询字符串 /archives?year=2024
-        }
+      const rsp = await apiCli.get(`/archives`,{
+        params:{year} // 这将转化为查询字符串 /archives?year=2024
       });
 
       // 处理响应数据，更新界面或状态
