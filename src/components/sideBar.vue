@@ -32,7 +32,7 @@
   // 响应式数据
   const items = [
     {href: '/', text: '最新文章'},
-    {href: '/archive', text: '文章存档'},
+    {href: '/archives', text: '文章存档'},
   ];
 
 </script>

@@ -20,8 +20,8 @@ const routes = [
     component: Home,
   },
   {
-    path: "/archive",
-    name: "archive",
+    path: "/archives",
+    name: "archives",
     component: Archive,
   },
   {
