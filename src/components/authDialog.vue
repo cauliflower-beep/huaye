@@ -42,7 +42,7 @@
 
             <div class="form-group">
               <label for="register-confirmPassword">确认密码</label>
-              <input type="password" v-model="formData.register.confirmPassword" placeholder="请确认密码" required />
+              <input type="password" v-model="formData.register.re_password" placeholder="请确认密码" required />
             </div>
           </div>
 
@@ -59,6 +59,8 @@
   import { ref, reactive } from 'vue';
   import {defineExpose} from 'vue'
 
+  import apiCli from "@/api/index";
+
   // 隐藏/显示弹窗
   const visible = ref(false);
   const currentTab = ref('login');
@@ -73,7 +75,7 @@
     register: {
       username: '',
       password: '',
-      confirmPassword: ''
+      re_password: ''
     }
   });
 
@@ -94,17 +96,50 @@
     visible.value = false;
   };
 
-  // 提交表单数据
-  const handleSubmit = () => {
-    // 提交逻辑，比如调用API进行登录或注册
-    console.log('提交', formData[currentTab.value]);
-  };
-
   // 把方法暴露给父组件，以便使用
   defineExpose({
     showLogin,
     showRegister
   })
+
+  // 注册函数
+  const handleRegister = async () => {
+    try {
+      const rsp = await apiCli.post('/v1/user/signup', formData.register);
+      if (rsp.data.code === 200){
+        console.log('注册成功：',rsp.data);
+        // 处理注册成功后的逻辑，比如显示成功消息、跳转页面等
+        hideDialog(); // 隐藏弹窗
+      }
+    } catch (error){
+      console.error('注册失败：',error);
+      // 处理错误，显示错误信息给用户
+    }
+  };
+
+  // 登录函数
+  const handleLogin = async()=>{
+    try {
+      const rsp = await apiCli.post('/v1/user/login',formData.login);
+      if (rsp.data.code === 200){
+        console.log('登录成功：',rsp.data);
+        // 处理登录成功后的逻辑，比如保存token、跳转页面等
+      }
+    }catch (error){
+      console.error('登录失败：',error);
+      // 处理错误，显示错误信息给用户
+    }
+  };
+
+  // 提交表单数据
+  const handleSubmit = async () => {
+    if (currentTab.value === 'register'){
+      await handleRegister();
+    }else if (currentTab.value === 'login'){
+      // 如果是登录，在这里添加登录逻辑
+      await handleLogin()
+    }
+  };
 </script>
 
 <style scoped>
