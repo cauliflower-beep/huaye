@@ -84,7 +84,7 @@
   // 当前选中的年份
   const selectedYear = ref(null)
 
-  // 组件挂载后从服务器获取年费列表
+  // 组件挂载后从服务器获取年份列表
   onMounted(async () => {
     try {
       const rsp = await apiCli.get('/v1/archives');
