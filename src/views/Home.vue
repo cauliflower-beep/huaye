@@ -48,7 +48,7 @@
           <!--文章tag-->
           <div class="article-tags">
             <tags-icon/>
-            <div v-for="tag in article.tags" :key="tag.id" class="article-tag">
+            <div v-for="tag in article.tags" :key="tag.id">
               <button class="tag-button" @click="queryTag">{{ tag.name }}</button>
             </div>
           </div>

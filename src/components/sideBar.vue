@@ -39,7 +39,7 @@
 
 <style scoped>
   .sideBar {
-    width: 200px; /* Fixed width */
+    width: 190px; /* Fixed width */
     height: 100%; /* Full height */
     position: fixed; /* Fixed position */
     top: 0; /* Align to top */
