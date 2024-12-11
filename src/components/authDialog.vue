@@ -64,6 +64,7 @@
   // 隐藏/显示弹窗
   const visible = ref(false);
   const currentTab = ref('login');
+  // 声明自定义事件 update-user-info
   const emitEvent = defineEmits(['update-user-info'])
 
   const formData = reactive({
@@ -146,7 +147,7 @@
       });
       if (rsp.data.code === 200){
         console.log('获取用户信息成功：',rsp.data);
-        // 将用户信息发送给父组件
+        // 触发update-user-info事件 将用户信息发送给父组件
         emitEvent('update-user-info',rsp.data.data);
       }
     }catch (e){

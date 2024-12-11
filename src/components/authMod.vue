@@ -5,9 +5,22 @@
       <button class="auth-button" @click="showLogin">登录</button>
       <button class="auth-button" @click="showRegister">注册</button>
     </div>
+
     <!--存在用户信息，则展示用户头像-->
-    <div v-else>
-      <img :src="userInfo.avatar" alt="User Avatar" class="user-avatar" />
+    <!--使用@mouseenter和@mouseleave来控制显示和隐藏卡片-->
+    <div v-else class="user-info-container" >
+      <img :src="userInfo.avatar" alt="User Avatar" class="user-avatar"
+           @mouseenter="showCard = true" @mouseleave="showCard = false"
+      />
+
+      <!--淡入淡出的过渡效果-->
+      <transition name="fade">
+        <div v-if="showCard" class="user-card">
+          <span class="user-name">@{{ userInfo.user_name }}</span>
+          <button class="card-button" @click="navigate2Profile">个人中心</button>
+          <button class="card-button" @click="logout">退出</button>
+        </div>
+      </transition>
     </div>
     <!--弹窗-->
     <auth-dialog ref="authDialog" @update-user-info="setUserInfo" />
@@ -22,6 +35,9 @@
 
   // 用户信息
   const userInfo = ref(null);
+
+  // 展示用户中心卡片
+  const showCard = ref(false);
 
   const showRegister = () => {
     if (authDialog.value) {
@@ -45,12 +61,25 @@
   const setUserInfo = (info: UserInfo) =>{
     userInfo.value = info;
   }
+
+  const navigate2Profile = () => {
+    // 处理导航到个人中心的逻辑
+    console.log('Navigate to Profile');
+  }
+
+  const logout = ()=>{
+    // 清楚token和其他用户信息
+    localStorage.removeItem('AUTH_TOKEN');
+    userInfo.value = null;
+  }
 </script>
 
 <style scoped>
   .auth-buttons {
     display: flex;
     gap:10px;
+
+    position: relative;
   }
 
   .auth-button {
@@ -79,5 +108,68 @@
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+
+    cursor: pointer;
+    margin-right: 40px;
+
+    transition: transform 0.2s ease; /* 添加放大效果 */
+  }
+
+  .user-avatar:hover {
+    transform: scale(1.2); /* 放大效果 */
+  }
+
+  /*个人中心卡片*/
+  .user-info-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .user-card {
+    position: absolute;
+    /*调整卡片位置*/
+    top: 20px;
+    left: -60px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+
+    overflow: hidden;
+  }
+
+  .user-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+  }
+
+  .card-button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: #61caef;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .card-button:hover {
+    background-color: #237db6;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s ease;
+  }
+
+  .fade-enter-from, .fade-leave-to {
+    opacity: 0;
   }
 </style>
