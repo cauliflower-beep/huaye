@@ -57,13 +57,14 @@
 <script setup lang="ts">
   // 响应式数据
   import { ref, reactive } from 'vue';
-  import {defineExpose} from 'vue'
+  import { defineExpose,defineEmits } from 'vue'
 
   import apiCli from "@/api/index";
 
   // 隐藏/显示弹窗
   const visible = ref(false);
   const currentTab = ref('login');
+  const emitEvent = defineEmits(['update-user-info'])
 
   const formData = reactive({
     // 登录
@@ -124,9 +125,32 @@
       if (rsp.data.code === 200){
         console.log('登录成功：',rsp.data);
         // 处理登录成功后的逻辑，比如保存token、跳转页面等
+        localStorage.setItem('AUTH_TOKEN',rsp.data.data.token);
+        // 调用获取用户信息的接口
+        await getUserInfo(rsp.data.data.token)
+        hideDialog();
       }
     }catch (error){
       console.error('登录失败：',error);
+      // 处理错误，显示错误信息给用户
+    }
+  };
+
+  // 获取用户信息
+  const getUserInfo = async (token:string)=>{
+    try {
+      const rsp = await apiCli.get('/v1/user/profile', {
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      });
+      if (rsp.data.code === 200){
+        console.log('获取用户信息成功：',rsp.data);
+        // 将用户信息发送给父组件
+        emitEvent('update-user-info',rsp.data.data);
+      }
+    }catch (e){
+      console.error('获取用户信息失败：',e);
       // 处理错误，显示错误信息给用户
     }
   };

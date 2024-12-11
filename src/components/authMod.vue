@@ -1,9 +1,16 @@
 <template>
   <div class="auth-buttons">
-    <button class="auth-button" @click="showLogin">登录</button>
-    <button class="auth-button" @click="showRegister">注册</button>
+    <!--不存在用户信息，则展示登录、注册按钮-->
+    <div v-if="!userInfo">
+      <button class="auth-button" @click="showLogin">登录</button>
+      <button class="auth-button" @click="showRegister">注册</button>
+    </div>
+    <!--存在用户信息，则展示用户头像-->
+    <div v-else>
+      <img :src="userInfo.avatar" alt="User Avatar" class="user-avatar" />
+    </div>
     <!--弹窗-->
-    <auth-dialog ref="authDialog"/>
+    <auth-dialog ref="authDialog" @update-user-info="setUserInfo" />
   </div>
 </template>
 
@@ -12,6 +19,9 @@
   import {ref} from 'vue';
 
   const authDialog = ref<InstanceType<typeof AuthDialog> | null>(null);
+
+  // 用户信息
+  const userInfo = ref(null);
 
   const showRegister = () => {
     if (authDialog.value) {
@@ -22,6 +32,18 @@
     if (authDialog.value) {
       authDialog.value.showLogin();
     }
+  }
+
+  interface UserInfo {
+    user_id:number;
+    user_name: string;
+    gender: number;
+    avatar: string;
+  }
+
+  // 更新userInfo
+  const setUserInfo = (info: UserInfo) =>{
+    userInfo.value = info;
   }
 </script>
 
@@ -42,11 +64,20 @@
 
     transition: all 0.2s ease; /* 添加过渡效果 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加轻微阴影 */
+
+    margin-right: 10px;
   }
 
   .auth-button:active {
     background-color: #237db6; /* 使用SCSS函数加深背景颜色 */
     transform: translate(2px,2px); /* 模拟按下去的效果 按钮被点击时稍微向右下移动*/
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* 减少阴影以模拟深度 */
+  }
+
+  .user-avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 </style>
