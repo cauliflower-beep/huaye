@@ -18,12 +18,16 @@
         <router-view/>
       </div>
     </div>
+
+    <!--悬浮发布按钮-->
+    <FloatingActionButton/>
   </div>
 </template>
 
 <script lang="ts" setup>
 import sideBar from "@/components/sideBar.vue";
 import navBar from "@/components/navBar.vue";
+import FloatingActionButton from "@/components/floatingActionButton.vue";
 import {RouterView} from "vue-router";
 
 </script>
