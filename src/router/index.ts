@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
 import Archive from "@/views/Archive.vue";
 import ArticleDetail from "@/views/ArticleDetail.vue";
+import Publish from "@/views/Publish.vue";
 
 const routes = [
   // 首页
@@ -28,6 +29,11 @@ const routes = [
     path: "/article",
     name:"article",
     component: ArticleDetail,
+  },
+  {
+    path: "/publish",
+    name:"publish",
+    component: Publish,
   }
 ];
 

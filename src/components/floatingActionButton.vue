@@ -5,11 +5,11 @@
 </template>
 
 <script setup lang="ts">
-  // import {useRouter} from "vue-router";
-  //
-  // const router = useRouter();
+  import {useRouter} from "vue-router";
+
+  const router = useRouter();
   const goToPostPage = () => {
-    // router.push("/post");
+    router.push("/publish");
     console.log("Go to Post Page");
   };
 
