@@ -1,3 +1,4 @@
+<!--登录、注册弹窗-->
 <template>
   <!--teleport允许将一个组件的DOM结构渲染到应用程序的另一个位置-->
   <teleport to="body">

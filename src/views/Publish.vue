@@ -1,26 +1,8 @@
 <template>
   <!--文章发布页面-->
   <div class="article-editor">
-    <div class="title-and-buttons">
-
-      <div class="title-container">
-        <!-- 标题输入框 -->
-        标题：
-        <input v-model="title" type="text" placeholder="输入文章标题..."
-                :maxlength="maxTitleLength"
-               @input="updateCounter"
-               class="title-input"
-        />
-        <!--字数统计-->
-        <span class="char-counter">{{ title.length }}/{{ maxTitleLength }}</span>
-      </div>
-
-      <!--提交按钮-->
-      <div class="buttons">
-        <button @click="saveDraft" class="save-draft">保存草稿</button>
-        <button @click="publishArticle" class="publish-button">发布文章</button>
-      </div>
-    </div>
+    <!--标题输入框-->
+    <title-input/>
 
     <!--标签输入框-->
     <!-- 标签容器 -->
@@ -59,26 +41,23 @@
     </div>
 
     <!-- 富文本编辑器 -->
-    <quill-editor
-      v-model:content="content"
-      contentType="text"
-      theme="snow"
-      :options="editorOptions"
-    />
+<!--    <quill-editor-->
+<!--      v-model:content="content"-->
+<!--      contentType="text"-->
+<!--      theme="snow"-->
+<!--      :options="editorOptions"-->
+<!--    />-->
   </div>
 </template>
 
 <script setup lang="ts">
 import {nextTick, onMounted, ref} from 'vue';
-  import {QuillEditor} from "@vueup/vue-quill";
-  import "@vueup/vue-quill/dist/vue-quill.snow.css";
-
-  // 文章标题
-  const title = ref("");
-  const maxTitleLength = 100; // 最大字数限制
+  // import {QuillEditor} from "@vueup/vue-quill";
+  // import "@vueup/vue-quill/dist/vue-quill.snow.css";
+  import titleInput from "@/components/titleInput.vue";
 
   // 文章内容
-  const content = ref(null);
+  // const content = ref(null);
 
   // 文章标签
   const currentTag = ref(""); // 当前正在输入的标签
@@ -89,26 +68,7 @@ import {nextTick, onMounted, ref} from 'vue';
   const summary = ref("");
 
   // 编辑器配置
-  const editorOptions = {};
-
-  // 发布文章的方法
-  const publishArticle = () => {
-    console.log("文章标题:", title.value);
-    console.log("文章内容:", content.value);
-    console.log("文章标签:", tagsList.value);
-    console.log("文章摘要:",summary.value);
-  };
-
-  // 保存草稿的方法
-  function saveDraft() {
-    // 这里实现保存草稿的逻辑
-    console.log("草稿已保存");
-  }
-
-  // 更新字数统计
-  function updateCounter(){
-    // 这个函数会在每次输入时被调用 用于触发试图更新
-  }
+  // const editorOptions = {};
 
   // 添加标签
   function addTag() {
@@ -140,7 +100,7 @@ import {nextTick, onMounted, ref} from 'vue';
   const tagInput = ref<HTMLInputElement | null>(null);
 
   onMounted(() => {
-    tagInput.value?.focus()
+    // tagInput.value?.focus()
   })
 </script>
 
@@ -148,69 +108,6 @@ import {nextTick, onMounted, ref} from 'vue';
   /* 添加一些样式 */
   .article-editor {
     padding: 20px;
-  }
-
-  .title-and-buttons{
-    display: flex;
-    align-items: center; /*垂直居中对齐*/
-    margin-bottom: 20px;
-  }
-
-  /*标题输入框*/
-  .title-container {
-    position: relative;
-    display: flex; /* 使用flex布局*/
-    flex-wrap: nowrap; /* 禁止内部元素换行*/
-    align-items: center; /* 垂直居中对齐*/
-    flex-grow: 1;
-  }
-
-  .title-input {
-    width:80%;
-    padding: 8px 32px 8px 8px ;
-    font-size: 1.2em;
-
-    border: #BDBDBD 1px solid;
-    border-radius: 20px;
-  }
-
-  .title-input::placeholder{
-    font-size: 0.6em; /*调整提示语字体大小*/
-  }
-
-  .title-container input:focus {
-    border: 2px solid #61caef; /* 焦点状态下的边框颜色 */
-    outline: none; /* 移除点击时的默认轮廓 */
-  }
-
-  .char-counter {
-    margin-left: 15px;
-    margin-top: 10px;
-    transform: translateY(-50%);
-    font-size: 0.8em;
-    color: #777;
-  }
-
-  button{
-    padding: 8px 16px;
-    margin-left: 10px; /* 按钮之间的间距 */
-    font-size: 1em;
-
-    border-radius: 20px;
-    background: none;
-    border: 1px solid #61caef;
-    cursor: pointer;
-  }
-
-  /* 保存草稿*/
-  .save-draft{
-    color: #61caef;
-  }
-
-  /* 发布按钮*/
-  .publish-button{
-    background-color: #61caef;
-    color: white;
   }
 
   /*标签容器*/
