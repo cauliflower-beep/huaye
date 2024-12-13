@@ -1,17 +1,14 @@
 <template>
-  <div class="title-and-buttons">
-
-    <div class="title-container">
-      <!-- 标题输入框 -->
-      标题：
-      <input v-model="title" type="text" placeholder="输入文章标题..."
-             :maxlength="maxTitleLength"
-             @input="updateCounter"
-             class="title-input"
-      />
-      <!--字数统计-->
-      <span class="char-counter">{{ title.length }}/{{ maxTitleLength }}</span>
-    </div>
+  <div class="title-container">
+    <!-- 标题输入框 -->
+    标题：
+    <input v-model="title" type="text" placeholder="输入文章标题..."
+           :maxlength="maxTitleLength"
+           @input="updateCounter"
+           class="title-input"
+    />
+    <!--字数统计-->
+    <span class="char-counter">{{ title.length }}/{{ maxTitleLength }}</span>
   </div>
 </template>
 
@@ -30,23 +27,18 @@
 
 <style scoped>
 
-  .title-and-buttons{
-    display: flex;
-    align-items: center; /*垂直居中对齐*/
-    margin-bottom: 20px;
-  }
-
   /*标题输入框*/
   .title-container {
-    position: relative;
+    //position: relative;
     display: flex; /* 使用flex布局*/
     flex-wrap: nowrap; /* 禁止内部元素换行*/
     align-items: center; /* 垂直居中对齐*/
     flex-grow: 1;
+    margin-bottom: 20px;
   }
 
   .title-input {
-    width:80%;
+    width:60%;
     padding: 8px 32px 8px 8px ;
     font-size: 1.2em;
 

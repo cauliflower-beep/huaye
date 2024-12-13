@@ -24,10 +24,19 @@
 </script>
 
 <style scoped>
+
+  .buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
   button{
     padding: 8px 16px;
-    margin-left: 10px; /* 按钮之间的间距 */
-    font-size: 1em;
+    font-size: 12px;
+
+    width: 80%;
 
     border-radius: 20px;
     background: none;

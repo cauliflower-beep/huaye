@@ -2,6 +2,16 @@
 
   <!-- 标签容器 -->
   <div class="tag-container">
+    <!-- 标签输入框 -->
+    <!--输入重复标签的话，不展示重复标签，在输入框右侧展示一个提示信息：标签重复 todo-->
+    <div>
+      标签：<input ref="tagInput" v-model="currentTag" type="text"
+                  placeholder="输入标签，以enter结束"
+                  @keydown.enter.prevent="addTag"
+                  class="underline-input"
+    />
+    </div>
+
     <!-- 展示已输入的标签 -->
     <div class="tags-list">
         <span v-for="(tag, index) in tagsList" :key="index" class="tag-item"
@@ -11,15 +21,6 @@
           #{{ tag }}
           <span v-if="hoveredTag === index" class="close-tag" @click.stop="removeTag(index)">×</span>
         </span>
-    </div>
-    <!-- 标签输入框 -->
-    <!--输入重复标签的话，不展示重复标签，在输入框右侧展示一个提示信息：标签重复 todo-->
-    <div>
-      标签：<input ref="tagInput" v-model="currentTag" type="text"
-                  placeholder="输入标签，以enter结束"
-                  @keydown.enter.prevent="addTag"
-                  class="underline-input"
-    />
     </div>
 
   </div>
@@ -68,14 +69,15 @@
   .tag-container{
     display: flex;
     flex-direction: column;
+
+    margin-left: 2%;
   }
 
   .tags-list{
     display: flex;
     flex-wrap: wrap; /*允许标签换行*/
     gap:2px 4px; /* 设置标签之间的间隔*/
-    margin-bottom: 5px;
-    margin-left: 50px;
+    margin-bottom: 2px;
   }
 
   /*单个标签样式*/
