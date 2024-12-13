@@ -6,7 +6,7 @@
       <!--左侧搞个标题和摘要编辑器-->
       <div class="left-side">
         <!--标题输入框-->
-        <title-input/>
+        <title-editor/>
 
         <!-- 摘要编辑框 -->
         <summary-editor/>
@@ -20,23 +20,17 @@
       </div>
     </div>
 
-    <!-- 富文本编辑器 -->
-<!--    <quill-editor-->
-<!--      v-model:content="content"-->
-<!--      contentType="text"-->
-<!--      theme="snow"-->
-<!--      :options="editorOptions"-->
-<!--    />-->
+    <!-- markdown编辑器 -->
+    <markdown-editor/>
   </div>
 </template>
 
 <script setup lang="ts">
-  // import {QuillEditor} from "@vueup/vue-quill";
-  // import "@vueup/vue-quill/dist/vue-quill.snow.css";
-  import titleInput from "@/components/titleInput.vue";
+  import titleEditor from "@/components/titleEditor.vue";
   import tagEditor from "@/components/tagEditor.vue";
   import summaryEditor from "@/components/summaryEditor.vue";
   import publishButtons from "@/components/publishButtons.vue";
+  import markdownEditor from "@/components/markdownEditor.vue";
 
   // 文章内容
   // const content = ref(null);
