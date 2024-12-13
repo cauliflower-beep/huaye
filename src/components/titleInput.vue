@@ -12,12 +12,6 @@
       <!--字数统计-->
       <span class="char-counter">{{ title.length }}/{{ maxTitleLength }}</span>
     </div>
-
-    <!--提交按钮-->
-    <div class="buttons">
-      <button @click="saveDraft" class="save-draft">保存草稿</button>
-      <button @click="publishArticle" class="publish-button">发布文章</button>
-    </div>
   </div>
 </template>
 
@@ -26,20 +20,6 @@
   // 文章标题
   const title = ref("");
   const maxTitleLength = 100; // 最大字数限制
-
-  // 发布文章的方法
-  const publishArticle = () => {
-    console.log("文章标题:", title.value);
-    // console.log("文章内容:", content.value);
-    // console.log("文章标签:", tagsList.value);
-    // console.log("文章摘要:",summary.value);
-  };
-
-  // 保存草稿的方法
-  function saveDraft() {
-    // 这里实现保存草稿的逻辑
-    console.log("草稿已保存");
-  }
 
   // 更新字数统计
   function updateCounter(){
@@ -89,28 +69,6 @@
     transform: translateY(-50%);
     font-size: 0.8em;
     color: #777;
-  }
-
-  button{
-    padding: 8px 16px;
-    margin-left: 10px; /* 按钮之间的间距 */
-    font-size: 1em;
-
-    border-radius: 20px;
-    background: none;
-    border: 1px solid #61caef;
-    cursor: pointer;
-  }
-
-  /* 保存草稿*/
-  .save-draft{
-    color: #61caef;
-  }
-
-  /* 发布按钮*/
-  .publish-button{
-    background-color: #61caef;
-    color: white;
   }
 
 </style>

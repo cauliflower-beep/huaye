@@ -4,6 +4,8 @@
     <!--标题输入框-->
     <title-input/>
 
+    <publish-buttons/>
+
     <!--标签输入框-->
     <tag-editor/>
 
@@ -26,6 +28,7 @@
   import titleInput from "@/components/titleInput.vue";
   import tagEditor from "@/components/tagEditor.vue";
   import summaryEditor from "@/components/summaryEditor.vue";
+  import publishButtons from "@/components/publishButtons.vue";
 
   // 文章内容
   // const content = ref(null);
