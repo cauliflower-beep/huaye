@@ -229,6 +229,7 @@
     transition: background-color 0.3s, border-color 0.3s;
 
     text-decoration: none; /* 去除按钮下方下划线*/
+    white-space: nowrap; /* 文字不换行*/
   }
 
   .read-all:hover {
